@@ -12,7 +12,7 @@ try:
     scaler_with_cols = joblib.load(scaler_path)
     model = joblib.load(model_path)
     scaler = scaler_with_cols['scaler']
-    cols_to_scale = scaler_with_cols['cols_to_scale']
+    cols_to_scaler = scaler_with_cols['cols_to_scale']
 except FileNotFoundError as e:
     st.error(f"Error loading files: {e}")
 
@@ -20,7 +20,7 @@ except FileNotFoundError as e:
 # Define the prediction function
 def predict_concrete_strength(input_data):
     # Validate input data
-    for col in cols_to_scale:
+    for col in cols_to_scaler:
         if col not in input_data:
             raise ValueError(f"Missing input data for column: {col}")
 
