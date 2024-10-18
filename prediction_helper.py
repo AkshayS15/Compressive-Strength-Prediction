@@ -1,6 +1,7 @@
 import numpy as np
 import joblib
 import os
+import streamlit as st
 
 # Define the paths
 scaler_path = os.path.join('artifacts', 'scaler.joblib')
