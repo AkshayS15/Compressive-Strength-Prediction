@@ -3,13 +3,18 @@ import joblib
 import os
 import streamlit as st
 
-# Load the saved scaler and model
-scaler_with_cols = joblib.load("artifacts\scaler.joblib")  # Adjust path as needed
-model = joblib.load("artifacts\ml_model.joblib")  # Adjust path as needed
+# Define the paths
+scaler_path = os.path.join('artifacts', 'scaler.joblib')
+model_path = os.path.join('artifacts', 'ml_model.joblib')
 
-# Extract the scaler and the columns used for scaling
-scaler = scaler_with_cols['scaler']  # The MinMaxScaler object
-cols_to_scale = scaler_with_cols['cols_to_scale']  # List of columns that were scaled
+# Load the scaler and model
+try:
+    scaler_with_cols = joblib.load(scaler_path)
+    model = joblib.load(model_path)
+    scaler = scaler_with_cols['scaler']
+    cols_to_scale = scaler_with_cols['cols_to_scale']
+except FileNotFoundError as e:
+    st.error(f"Error loading files: {e}")
 
 
 # Define the prediction function
