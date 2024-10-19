@@ -20,7 +20,7 @@ except FileNotFoundError as e:
 # Define the prediction function
 def predict_concrete_strength(input_data):
     # Validate input data
-    for col in cols_to_scaler:
+    for col in cols_to_scale:
         if col not in input_data:
             raise ValueError(f"Missing input data for column: {col}")
 
